@@ -26,12 +26,6 @@ class OverviewFragment : Fragment() {
 
         binding.viewModel = viewModel
 
-        setHasOptionsMenu(true)
         return binding.root
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.overflow_menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
     }
 }
