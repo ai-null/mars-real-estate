@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gabutproject.mars_rent.network.MarsApi
+import com.gabutproject.mars_rent.network.MarsProperty
 import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -33,13 +34,17 @@ class OverviewViewModel : ViewModel() {
         // TODO: Call the MarsApi to enqueue the retrofit request, implementing callbacks
 
         withContext(Dispatchers.IO) {
-            MarsApi.retrofitService.getProperties().enqueue(object : Callback<String> {
-                override fun onFailure(call: Call<String>, t: Throwable) {
+            MarsApi.retrofitService.getProperties().enqueue(object : Callback<List<MarsProperty>> {
+                override fun onFailure(call: Call<List<MarsProperty>>, t: Throwable) {
                     _response.value = "failure" + t.message
                 }
 
-                override fun onResponse(call: Call<String>, response: Response<String>) {
-                    _response.value = response.body()
+                override fun onResponse(
+                    call: Call<List<MarsProperty>>,
+                    response: Response<List<MarsProperty>>
+                ) {
+                    _response.value =
+                        "Success: ${response.body()?.size.toString()} Mars property retrieved"
                 }
             })
         }
