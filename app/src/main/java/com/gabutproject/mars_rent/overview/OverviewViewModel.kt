@@ -16,8 +16,8 @@ class OverviewViewModel : ViewModel() {
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    private val _property = MutableLiveData<MarsProperty>()
-    val property: LiveData<MarsProperty> get() = _property
+    private val _properties = MutableLiveData<List<MarsProperty>>()
+    val properties: LiveData<List<MarsProperty>> get() = _properties
 
     init {
         getMarsRealEstateData()
@@ -34,7 +34,7 @@ class OverviewViewModel : ViewModel() {
                     "data retrieved with: ${getPropertiesDeferred.size} of data & ${getPropertiesDeferred[0].id}"
 
                 if (getPropertiesDeferred.isNotEmpty()) {
-                    _property.value = getPropertiesDeferred[0]
+                    _properties.value = getPropertiesDeferred
                 }
             } catch (e: Exception) {
                 _response.value = "error ${e.message}"

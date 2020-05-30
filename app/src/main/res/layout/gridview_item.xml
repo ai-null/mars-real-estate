@@ -5,21 +5,16 @@
     <data>
 
         <variable
-            name="viewModel"
-            type="com.gabutproject.mars_rent.overview.OverviewViewModel" />
+            name="property"
+            type="com.gabutproject.mars_rent.network.MarsProperty" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ImageView
+        android:id="@+id/mars_image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:imageUrl="@{viewModel.property.imgSrcUrl}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="170dp"
+        android:adjustViewBounds="true"
+        android:padding="2dp"
+        android:scaleType="centerCrop"
+        app:imageUrl="@{property.imgSrcUrl}" />
 </layout>
