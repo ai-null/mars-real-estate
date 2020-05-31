@@ -9,9 +9,11 @@ import com.gabutproject.mars_rent.network.MarsProperty
 import kotlinx.coroutines.*
 import java.lang.Exception
 
+enum class MarsApiStatus { LOADING, ERROR, DONE }
+
 class OverviewViewModel : ViewModel() {
-    private val _response = MutableLiveData<String>()
-    val response: LiveData<String> get() = _response
+    private val _status = MutableLiveData<MarsApiStatus>()
+    val status: LiveData<MarsApiStatus> get() = _status
 
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -25,19 +27,14 @@ class OverviewViewModel : ViewModel() {
 
     private fun getMarsRealEstateData() {
         uiScope.launch {
-            _response.value = "Set Mars API response here!"
-
-            val getPropertiesDeferred = MarsApi.retrofitService.getPropertiesAsync()
-
             try {
-                _response.value =
-                    "data retrieved with: ${getPropertiesDeferred.size} of data & ${getPropertiesDeferred[0].id}"
-
-                if (getPropertiesDeferred.isNotEmpty()) {
-                    _properties.value = getPropertiesDeferred
-                }
+                _status.value = MarsApiStatus.LOADING
+                val listResult = MarsApi.retrofitService.getPropertiesAsync()
+                _status.value = MarsApiStatus.DONE
+                _properties.value = listResult
             } catch (e: Exception) {
-                _response.value = "error ${e.message}"
+                _status.value = MarsApiStatus.ERROR
+                _properties.value = ArrayList()
             }
         }
     }

@@ -25,7 +25,8 @@ class PhotosGridAdapter :
         parent: ViewGroup,
         viewType: Int
     ): MarsPropertyViewHolder {
-        return MarsPropertyViewHolder(GridviewItemBinding.inflate(LayoutInflater.from(parent.context)))
+        val binding = GridviewItemBinding.inflate(LayoutInflater.from(parent.context))
+        return MarsPropertyViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MarsPropertyViewHolder, position: Int) {

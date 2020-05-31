@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">mars-rent</string>
+    <string name="connection_error">connection error</string>
 </resources>
