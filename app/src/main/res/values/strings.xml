@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">mars-rent</string>
     <string name="connection_error">connection error</string>
+    <string name="show_all">Show all</string>
+    <string name="buy">Buy</string>
+    <string name="rent">Rent</string>
+    <string name="mars_location_image">mars location image</string>
 </resources>

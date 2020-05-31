@@ -6,14 +6,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.gabutproject.mars_rent.R
-import com.gabutproject.mars_rent.databinding.FragmentOverviewBinding
-import com.gabutproject.mars_rent.databinding.GridviewItemBinding
+import com.gabutproject.mars_rent.databinding.OverviewFragmentBinding
 
 class OverviewFragment : Fragment() {
 
-    private lateinit var binding: FragmentOverviewBinding
+    private lateinit var binding: OverviewFragmentBinding
     private val viewModel: OverviewViewModel by lazy {
         ViewModelProvider(this).get(OverviewViewModel::class.java)
     }
@@ -23,7 +21,7 @@ class OverviewFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_overview, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.overview_fragment, container, false)
 
         // set lifecycle owner if the layout to this fragment
         binding.lifecycleOwner = this
