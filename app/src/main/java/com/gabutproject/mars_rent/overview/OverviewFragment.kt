@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.gabutproject.mars_rent.R
 import com.gabutproject.mars_rent.databinding.OverviewFragmentBinding
+import com.gabutproject.mars_rent.network.MarsApiFilter
 
 class OverviewFragment : Fragment() {
 
@@ -43,5 +44,17 @@ class OverviewFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.overflow_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        viewModel.updateListFilter(
+            when (item.itemId) {
+                R.id.SHOW_RENT -> MarsApiFilter.SHOW_RENT
+                R.id.SHOW_BUY -> MarsApiFilter.SHOW_BUY
+                else -> MarsApiFilter.SHOW_ALL
+            }
+        )
+
+        return true
     }
 }
