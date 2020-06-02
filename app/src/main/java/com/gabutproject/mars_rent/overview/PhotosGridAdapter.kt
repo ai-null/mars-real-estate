@@ -1,6 +1,7 @@
 package com.gabutproject.mars_rent.overview
 
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -24,7 +25,10 @@ class PhotosGridAdapter(private val clickListener: MarsRealEstateListener) :
         val marsProperty = getItem(position)
 
         // set onclick listener to holder, an pass the data
-        holder.itemView.setOnClickListener { clickListener.onClick(marsProperty) }
+        holder.itemView.setOnClickListener {
+            Log.i("viewAdapter", "clicked $marsProperty")
+            clickListener.onClick(marsProperty)
+        }
         holder.bind(marsProperty)
     }
 

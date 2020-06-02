@@ -9,7 +9,9 @@
         android:label="OverviewFragment" >
         <action
             android:id="@+id/action_overviewFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/detailFragment"
+            app:popUpTo="@id/detailFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"

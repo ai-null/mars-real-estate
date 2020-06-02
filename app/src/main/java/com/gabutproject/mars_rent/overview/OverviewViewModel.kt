@@ -1,5 +1,6 @@
 package com.gabutproject.mars_rent.overview
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -57,6 +58,7 @@ class OverviewViewModel : ViewModel() {
     }
 
     fun onSelectedItemNavigate(marsProperty: MarsProperty) {
+        Log.i("viewmodel", "heya == $marsProperty.id")
         _selectedItemData.value = marsProperty
     }
 
