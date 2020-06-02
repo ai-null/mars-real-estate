@@ -14,5 +14,9 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.gabutproject.mars_rent.detail.DetailFragment"
-        android:label="DetailFragment" />
+        android:label="DetailFragment" >
+        <argument
+            android:name="selectedMarsItem"
+            app:argType="com.gabutproject.mars_rent.network.MarsProperty" />
+    </fragment>
 </navigation>

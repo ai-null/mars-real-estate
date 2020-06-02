@@ -9,17 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gabutproject.mars_rent.databinding.GridviewItemBinding
 import com.gabutproject.mars_rent.network.MarsProperty
 
-class PhotosGridAdapter :
+class PhotosGridAdapter(private val clickListener: MarsRealEstateListener) :
     ListAdapter<MarsProperty, PhotosGridAdapter.MarsPropertyViewHolder>(DiffCallback) {
-
-    class MarsPropertyViewHolder(private var binding: GridviewItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(marsProperty: MarsProperty) {
-            binding.property = marsProperty
-            binding.executePendingBindings()
-        }
-    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -31,6 +22,9 @@ class PhotosGridAdapter :
 
     override fun onBindViewHolder(holder: MarsPropertyViewHolder, position: Int) {
         val marsProperty = getItem(position)
+
+        // set onclick listener to holder, an pass the data
+        holder.itemView.setOnClickListener { clickListener.onClick(marsProperty) }
         holder.bind(marsProperty)
     }
 
@@ -43,5 +37,20 @@ class PhotosGridAdapter :
             return oldItem == newItem
         }
 
+    }
+
+    class MarsPropertyViewHolder(private var binding: GridviewItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(
+            marsProperty: MarsProperty
+        ) {
+            binding.property = marsProperty
+            binding.executePendingBindings()
+        }
+    }
+
+    class MarsRealEstateListener(val clickListener: (MarsProperty) -> Unit) {
+        fun onClick(marsProperty: MarsProperty) = clickListener(marsProperty)
     }
 }

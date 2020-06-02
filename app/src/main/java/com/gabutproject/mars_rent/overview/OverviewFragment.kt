@@ -5,6 +5,7 @@ import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.gabutproject.mars_rent.R
 import com.gabutproject.mars_rent.databinding.OverviewFragmentBinding
@@ -33,7 +34,13 @@ class OverviewFragment : Fragment() {
         val layoutManager = GridLayoutManager(activity, 2)
         binding.photosGrid.layoutManager = layoutManager
 
-        binding.photosGrid.adapter = PhotosGridAdapter()
+        // run after item clicked
+        binding.photosGrid.adapter =
+            PhotosGridAdapter(PhotosGridAdapter.MarsRealEstateListener { MarsDataItem ->
+                findNavController().navigate(
+                    OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(MarsDataItem)
+                )
+            })
 
         // set up overflow menu
         setHasOptionsMenu(true)

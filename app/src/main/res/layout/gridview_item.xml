@@ -8,12 +8,17 @@
             name="property"
             type="com.gabutproject.mars_rent.network.MarsProperty" />
 
+        <variable
+            name="clickListener"
+            type="com.gabutproject.mars_rent.overview.PhotosGridAdapter.MarsRealEstateListener" />
+
         <import type="android.view.View" />
     </data>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="170dp">
+        android:layout_height="170dp"
+        android:onClick="@{() -> clickListener.onClick(property)}">
 
         <ImageView
             android:id="@+id/mars_image"
