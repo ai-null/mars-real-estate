@@ -21,6 +21,9 @@ class OverviewViewModel : ViewModel() {
     private val _properties = MutableLiveData<List<MarsProperty>>()
     val properties: LiveData<List<MarsProperty>> get() = _properties
 
+    private val _selectedItemData = MutableLiveData<MarsProperty>()
+    val selectedItemData: LiveData<MarsProperty> get() = _selectedItemData
+
     init {
         // pass show all as a default value
         // we want to show all items in the first time
@@ -51,5 +54,13 @@ class OverviewViewModel : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
+    }
+
+    fun onSelectedItemNavigate(marsProperty: MarsProperty) {
+        _selectedItemData.value = marsProperty
+    }
+
+    fun onSelectedItemNavigateComplete() {
+        _selectedItemData.value = null
     }
 }

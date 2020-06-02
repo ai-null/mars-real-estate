@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -36,15 +37,26 @@ class OverviewFragment : Fragment() {
 
         // run after item clicked
         binding.photosGrid.adapter =
-            PhotosGridAdapter(PhotosGridAdapter.MarsRealEstateListener { MarsDataItem ->
-                findNavController().navigate(
-                    OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(MarsDataItem)
-                )
+            PhotosGridAdapter(PhotosGridAdapter.MarsRealEstateListener { marsProperty ->
+                viewModel.onSelectedItemNavigate(marsProperty)
             })
+
+        updateLiveData()
 
         // set up overflow menu
         setHasOptionsMenu(true)
         return binding.root
+    }
+
+    private fun updateLiveData() {
+        viewModel.selectedItemData.observe(viewLifecycleOwner, Observer { marsProperty ->
+            if (marsProperty != null) {
+                findNavController().navigate(
+                    OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(marsProperty)
+                )
+                viewModel.onSelectedItemNavigateComplete()
+            }
+        })
     }
 
     // show overflow menu
