@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.gabutproject.mars_rent.detail.DetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/mars_location_image"
+            android:layout_width="0dp"
+            android:layout_height="270dp"
+            android:contentDescription="@string/mars_location_image"
+            android:scaleType="centerCrop"
+            app:imageUrl="@{viewModel.selectedProperty.imgSrcUrl}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_for_sale_outline" />
+
+        <TextView
+            android:id="@+id/status_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            android:text="@{viewModel.displayPropertyType}"
+            android:textColor="@android:color/black"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="@id/price_text"
+            app:layout_constraintStart_toStartOf="@id/mars_location_image"
+            app:layout_constraintTop_toBottomOf="@id/mars_location_image"
+            tools:text="For Sale" />
+
+        <TextView
+            android:id="@+id/price_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.displayPropertyPrice}"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/mars_location_image"
+            app:layout_constraintTop_toBottomOf="@id/status_text"
+            tools:text="$450,000" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

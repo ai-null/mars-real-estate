@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="property"
+            type="com.gabutproject.mars_rent.network.MarsProperty" />
+
+        <variable
+            name="clickListener"
+            type="com.gabutproject.mars_rent.overview.PhotosGridAdapter.MarsRealEstateListener" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="170dp">
+
+        <ImageView
+            android:id="@+id/mars_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:padding="2dp"
+            android:scaleType="centerCrop"
+            app:imageUrl="@{property.imgSrcUrl}" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_gravity="end|bottom"
+            android:adjustViewBounds="true"
+            android:padding="5dp"
+            android:src="@drawable/ic_for_sale_outline"
+            android:visibility="@{property.rental ? View.GONE : View.VISIBLE}" />
+    </FrameLayout>
+</layout>
