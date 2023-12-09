@@ -35,19 +35,24 @@ class OverviewViewModel : ViewModel() {
     private fun getMarsRealEstateData(type: MarsApiFilter) {
         uiScope.launch {
             try {
-                // set status to loading and update to done after fetching is completed
-                _status.value = MarsApiStatus.LOADING
-                val listResult = MarsApi.retrofitService.getPropertiesAsync(type.value)
-                _status.value = MarsApiStatus.DONE
+//                // set status to loading and update to done after fetching is completed
+//                _status.value = MarsApiStatus.LOADING
+//                val listResult = MarsApi.retrofitService.getPropertiesAsync(type.value)
+//                _status.value = MarsApiStatus.DONE
 
-                // set the value
-                _properties.value = listResult.map {
+                val listResult = (1..25).map {
                     val russianRoulette = Random.nextInt(0, marsImages.lastIndex)
-                    it.copy(
+                    MarsProperty(
+                        id = it.toString(),
+                        type = if (russianRoulette % 2 == 0) "rent" else "buy",
                         imgSrcUrl = marsImages[russianRoulette],
-                        description = descriptions[russianRoulette]
+                        description = descriptions[russianRoulette],
+                        price = Random.nextInt(3000, 6000).toDouble()
                     )
                 }
+
+                // set the value
+                _properties.value = listResult
             } catch (e: Exception) {
                 _status.value = MarsApiStatus.ERROR
                 _properties.value = ArrayList()
