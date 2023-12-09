@@ -9,11 +9,13 @@ data class MarsProperty(
     @Json(name = "img_src")
     val imgSrcUrl: String,
     val type: String,
+    val description: String = "",
     val price: Double
 ) : Parcelable {
     val rental get() = type == "rent"
 
     constructor(parcel: Parcel) : this(
+        parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
@@ -25,6 +27,7 @@ data class MarsProperty(
         parcel.writeString(id)
         parcel.writeString(imgSrcUrl)
         parcel.writeString(type)
+        parcel.writeString(description)
         parcel.writeDouble(price)
     }
 

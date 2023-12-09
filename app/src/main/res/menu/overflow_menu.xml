@@ -14,4 +14,11 @@
         android:id="@+id/SHOW_BUY"
         android:title="@string/buy"
         app:layout_constraintTop_toTopOf="parent" />
+    <item
+        android:id="@+id/ABOUT"
+        android:icon="@drawable/outline_info_24"
+        android:title="@string/about"
+        app:iconTint="@android:color/white"
+        app:showAsAction="always"
+        app:layout_constraintTop_toTopOf="parent" />
 </menu>

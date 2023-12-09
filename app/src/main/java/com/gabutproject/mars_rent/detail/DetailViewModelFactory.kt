@@ -7,7 +7,8 @@ import com.gabutproject.mars_rent.network.MarsProperty
 
 class DetailViewModelFactory(private val selectedMarsProperty: MarsProperty, private val app: Application) :
     ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {
             return DetailViewModel(selectedMarsProperty, app) as T
         }

@@ -2,23 +2,36 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_nav"
+    xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@id/overviewFragment">
     <fragment
         android:id="@+id/overviewFragment"
         android:name="com.gabutproject.mars_rent.overview.OverviewFragment"
+        tools:layout="@layout/overview_fragment"
         android:label="OverviewFragment" >
         <action
             android:id="@+id/action_overviewFragment_to_detailFragment"
             app:destination="@id/detailFragment"
-            app:popUpTo="@id/detailFragment"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@id/overviewFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_overviewFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment"
+            app:popUpTo="@id/overviewFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.gabutproject.mars_rent.detail.DetailFragment"
+        tools:layout="@layout/detail_fragment"
         android:label="DetailFragment" >
         <argument
             android:name="selectedMarsItem"
             app:argType="com.gabutproject.mars_rent.network.MarsProperty" />
     </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.gabutproject.mars_rent.about.AboutFragment"
+        tools:layout="@layout/fragment_about"
+        android:label="AboutFragment" />
 </navigation>

@@ -50,5 +50,16 @@
             app:layout_constraintTop_toBottomOf="@id/status_text"
             tools:text="$450,000" />
 
+        <TextView
+            android:id="@+id/description_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.displayPropertyDescription}"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/mars_location_image"
+            app:layout_constraintTop_toBottomOf="@id/price_text"
+            android:layout_marginTop="16dp"
+            tools:text="@tools:sample/lorem/random" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
