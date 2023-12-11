@@ -35,7 +35,6 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<MarsProperty>?) {
 
 @BindingAdapter("marsApiStatus")
 fun bindStatus(statusImageView: ImageView, status: MarsApiStatus?) {
-
     status?.let {
         when (status) {
             MarsApiStatus.LOADING -> {
